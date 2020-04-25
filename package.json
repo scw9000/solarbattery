@@ -1,6 +1,6 @@
 {
   "name": "node-homebridge-solar",
-  "version": "0.0.1-dev1",
+  "version": "0.0.2-dev2",
   "description": "homebridge plugin solar",
   "main": "server.js",
   "scripts": {
