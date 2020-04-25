@@ -5,14 +5,8 @@ var Service, Characteristic;
 module.exports = function (homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
-    homebridge.registerAccessory("BatteryService", "HomeBattery", LGBattery);
+    homebridge.registerAccessory("node-homebridge-solar", "HomeBattery", LGBattery);
 };
-
-// const url = require('url');
-// function myBattery(log, config) {
-//     this.log = log;
-//     this.getUrl = url.parse(config['getUrl']);
-// }
 
 function LGBattery(log, config) {
     this.log = log;
