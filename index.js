@@ -9,6 +9,7 @@ module.exports = function (homebridge) {
 };
 
 function LGBattery(log, config) {
+    this.log = log
     this.name = config["name"];
     this.brand = config["brand"];
     this.url = config["url"];
