@@ -11,9 +11,12 @@
     "homebridge-plugin",
     "solar",
     "homebridge"
-
   ],
   "dependencies": {
     "needle": "^2.4.1"
+  },
+  "engines": {                                                                                                                                                         
+    "homebridge": ">=0.4.50",                                                                                                                                          
+    "node": ">=12.16.1"                                                                                                                                                
   }
 }
