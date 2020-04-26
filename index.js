@@ -10,10 +10,10 @@ module.exports = function (homebridge) {
 
 function LGBattery(log, config) {
     this.name = config["name"];
+    this.brand = config["brand"];
     this.url = config["url"];
-    this.BatteryID = config["battery_id"];
 
-    this.infoservice = new Service.AccessoryInformation(this.name);
+    this.infoservice = new Service.AccessoryInformation(this.brand);
     this.infoservice
         .setCharacteristic(Characteristic.Manufacturer, "LG")
         .setCharacteristic(Characteristic.Model, "LG Chem RESU 10HL")
