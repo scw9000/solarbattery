@@ -8,7 +8,7 @@
   },
   "keywords": [
     "node",
-    "homebridge",
+    "homebridge-plugin",
     "solar"
   ],
   "dependencies": {
