@@ -1,6 +1,6 @@
 var needle = require('needle');
 
-const Service, Characteristic;
+var Service, Characteristic;
 
 module.exports = function (homebridge) {
     Service = homebridge.hap.Service;
@@ -36,55 +36,55 @@ function LGBattery(log, config) {
 }
 
 LGBattery.prototype.getBatteryLevel = function(callback) {
-    this.log("getting battery level state...");
-    
-    needle.get(this.url, function(err, resp) {
+  this.log("getting battery level state...");
+  
+  needle.get(this.url, function(err, resp) {
+    if (!err && response.statusCode == 200) {
+      var json = JSON.parse(body);
+      var battery = json.battery_level;
+      this.log("battery level: " + battery);
+      callback(null, battery);
+    }
+    else {
+      this.log("Error getting state (status code %s): %s", response.statusCode, err);
+      callback(err);
+    }
+  });
+}
+
+LGBattery.prototype.getChargingState = function(callback) {
+  this.log("getting charging state...");
+  
+  needle.get(this.url, function(err, resp) {
       if (!err && response.statusCode == 200) {
         var json = JSON.parse(body);
-        var battery = json.battery_level;
-        this.log("battery level: " + battery);
-        callback(null, battery);
+        var status = json.status;
+        this.log("battery chars: "  + status );
+        callback(null, status);
       }
       else {
         this.log("Error getting state (status code %s): %s", response.statusCode, err);
         callback(err);
       }
-    }.bind(this));
-};
-
-LGBattery.prototype.getChargingState = function(callback) {
-    this.log("getting charging state...");
-    
-    needle.get(this.url, function(err, resp) {
-        if (!err && response.statusCode == 200) {
-          var json = JSON.parse(body);
-          var status = json.status;
-          this.log("battery chars: "  + status );
-          callback(null, status);
-        }
-        else {
-          this.log("Error getting state (status code %s): %s", response.statusCode, err);
-          callback(err);
-        }
-      }.bind(this));
-};
+  });
+}
 
 LGBattery.prototype.getStatusLowBattery = function(callback) {
-    this.log("getting low battery level state...");
+  this.log("getting low battery level state...");
     
-    needle.get(this.url, function(err, resp) {
-        if (!err && response.statusCode == 200) {
-          var json = JSON.parse(body);
-          var low = json.low;
-          this.log("battery chars: " + low);
-          callback(null, low);
-        }
-        else {
-          this.log("Error getting state (status code %s): %s", response.statusCode, err);
-          callback(err);
-        }
-      }.bind(this));
-};
+  needle.get(this.url, function(err, resp) {
+      if (!err && response.statusCode == 200) {
+        var json = JSON.parse(body);
+        var low = json.low;
+        this.log("battery chars: " + low);
+        callback(null, low);
+      }
+      else {
+        this.log("Error getting state (status code %s): %s", response.statusCode, err);
+        callback(err);
+      }
+  });
+}
 
 LGBattery.prototype.getServices = function() {
     return [this.service];
