@@ -36,48 +36,51 @@ function LGBattery(log, config) {
 }
 
 LGBattery.prototype.getBatteryLevel = function(callback) {
-  this.log("getting battery level...");
+  var ithis = this;
+  ithis.log("getting battery level...");
   
-  needle.get(this.url, function(err, resp) {
+  needle.get(ithis.url, function(err, resp) {
     if (!err && resp.statusCode == 200) {
       var battery = resp.body.battery_level;
-      this.log("battery level: %s", battery);
+      ithis.log("battery level: %s", battery);
       callback(null, battery);
     }
     else {
-      this.log("Error getting battery level (status code %s): %s", resp.statusCode, err);
+      ithis.log("Error getting battery level (status code %s): %s", resp.statusCode, err);
       callback(err);
     }
   });
 }
 
 LGBattery.prototype.getChargingState = function(callback) {
-  this.log("getting charging state...");
+  var ithis = this;
+  ithis.log("getting charging state...");
   
-  needle.get(this.url, function(err, resp) {
+  needle.get(ithis.url, function(err, resp) {
       if (!err && resp.statusCode == 200) {
         var status = resp.body.status;
-        this.log("charging state: %s", status );
+        ithis.log("charging state: %s", status );
         callback(null, status);
       }
       else {
-        this.log("Error getting charging state (status code %s): %s", resp.statusCode, err);
+        ithis.log("Error getting charging state (status code %s): %s", resp.statusCode, err);
         callback(err);
       }
   });
 }
 
 LGBattery.prototype.getStatusLowBattery = function(callback) {
-  this.log("getting low battery state...");
+  var ithis = this;
+  ithis.log("getting low battery state...");
     
-  needle.get(this.url, function(err, resp) {
+  needle.get(ithis.url, function(err, resp) {
       if (!err && resp.statusCode == 200) {
         var low = resp.body.low;
-        this.log("low battery state: %s", low);
+        ithis.log("low battery state: %s", low);
         callback(null, low);
       }
       else {
-        this.log("Error getting low battery state (status code %s): %s", response.statusCode, err);
+        ithis.log("Error getting low battery state (status code %s): %s", response.statusCode, err);
         callback(err);
       }
   });
