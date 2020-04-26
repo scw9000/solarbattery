@@ -13,13 +13,13 @@ function LGBattery(log, config) {
     this.url = config["url"];
     this.BatteryID = config["battery_id"];
 
-    this.service = new Service.BatteryService(this.name);
-    // informationService
-    //     .setCharacteristic(Characteristic.Manufacturer, "LG")
-    //     .setCharacteristic(Characteristic.Model, "LG Chem RESU 10HL")
-    //     .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
+    this.getModelInfo();
+    informationService
+        .setCharacteristic(Characteristic.Manufacturer, "LG")
+        .setCharacteristic(Characteristic.Model, "LG Chem RESU 10HL")
+        .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
 
-    // let batteryService = new Service.Battery("My Battery");
+    this.service = new Service.BatteryService(this.name);
 
     this.service
         .getCharacteristic(Characteristic.BatteryLevel)
@@ -35,48 +35,48 @@ function LGBattery(log, config) {
 }
 
 LGBattery.prototype.getBatteryLevel = function(callback) {
-  console.log("getting battery level state...");
+  this.log("getting battery level...");
   
   needle.get(this.url, function(err, resp) {
     if (!err && resp.statusCode == 200) {
       var battery = resp.body.battery_level;
-      console.log("battery level: " + battery);
+      this.log("battery level: " + battery);
       callback(null, battery);
     }
     else {
-      console.log("Error getting state (status code %s): %s", response.statusCode, err);
+      this.log("Error getting battery level (status code %s): %s", resp.statusCode, err);
       callback(err);
     }
   });
 }
 
 LGBattery.prototype.getChargingState = function(callback) {
-  console.log("getting charging state...");
+  this.log("getting charging state...");
   
   needle.get(this.url, function(err, resp) {
       if (!err && resp.statusCode == 200) {
         var status = resp.body.status;
-        console.log("battery chars: "  + status );
+        this.log("charging state: "  + status );
         callback(null, status);
       }
       else {
-        console.log("Error getting state (status code %s): %s", response.statusCode, err);
+        this.log("Error getting charging state (status code %s): %s", resp.statusCode, err);
         callback(err);
       }
   });
 }
 
 LGBattery.prototype.getStatusLowBattery = function(callback) {
-  console.log("getting low battery level state...");
+  this.log("getting low battery state...");
     
   needle.get(this.url, function(err, resp) {
       if (!err && resp.statusCode == 200) {
         var low = resp.body.low;
-        console.log("battery chars: " + low);
+        this.log("low battery state: " + low);
         callback(null, low);
       }
       else {
-        console.log("Error getting state (status code %s): %s", response.statusCode, err);
+        this.log("Error getting low battery state (status code %s): %s", response.statusCode, err);
         callback(err);
       }
   });
