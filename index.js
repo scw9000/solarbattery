@@ -15,9 +15,9 @@ function LGBattery(log, config) {
     this.BatteryID = config["battery_id"];
 
     this.service = new Service.BatteryService(this.name);
-    informationService
-        .setCharacteristic(Characteristic.Manufacturer, "LG")
-        .setCharacteristic(Characteristic.Model, "LG Chem RESU 10HL")
+    // informationService
+    //     .setCharacteristic(Characteristic.Manufacturer, "LG")
+    //     .setCharacteristic(Characteristic.Model, "LG Chem RESU 10HL")
     //     .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
 
     // let batteryService = new Service.Battery("My Battery");
