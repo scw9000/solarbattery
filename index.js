@@ -1,6 +1,6 @@
 var needle = require('needle');
 
-var Service, Characteristic;
+const Service, Characteristic;
 
 module.exports = function (homebridge) {
     Service = homebridge.hap.Service;

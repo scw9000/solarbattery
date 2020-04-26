@@ -1,18 +1,14 @@
 {
   "name": "node-homebridge-solar",
-  "version": "0.0.2-dev2",
+  "version": "0.0.2-dev3",
   "description": "homebridge plugin solar",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
   "repository": {
     "type": "git",
     "url": "git@github.com:scw9000/solarbattery.git"
   },
   "keywords": [
     "node",
-    "express",
+    "homebridge",
     "solar"
   ],
   "dependencies": {
