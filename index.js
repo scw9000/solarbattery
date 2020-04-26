@@ -13,11 +13,12 @@ function LGBattery(log, config) {
     this.url = config["url"];
     this.BatteryID = config["battery_id"];
 
-    this.getModelInfo();
+    var informationService = new Service.AccessoryInformation();
     informationService
         .setCharacteristic(Characteristic.Manufacturer, "LG")
         .setCharacteristic(Characteristic.Model, "LG Chem RESU 10HL")
         .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
+    this.services.push(informationService);   
 
     this.service = new Service.BatteryService(this.name);
 
