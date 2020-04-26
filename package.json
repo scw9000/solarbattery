@@ -1,6 +1,6 @@
 {
   "name": "node-homebridge-solar",
-  "version": "0.0.2-dev3",
+  "version": "0.0.1-dev4",
   "description": "homebridge plugin solar",
   "repository": {
     "type": "git",
