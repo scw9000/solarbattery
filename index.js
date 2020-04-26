@@ -9,7 +9,6 @@ module.exports = function (homebridge) {
 };
 
 function LGBattery(log, config) {
-    this.log = log;
     this.name = config["name"];
     this.url = config["url"];
     this.BatteryID = config["battery_id"];
@@ -36,48 +35,48 @@ function LGBattery(log, config) {
 }
 
 LGBattery.prototype.getBatteryLevel = function(callback) {
-  this.log("getting battery level state...");
+  console.log("getting battery level state...");
   
   needle.get(this.url, function(err, resp) {
     if (!err && resp.statusCode == 200) {
       var battery = resp.body.battery_level;
-      this.log("battery level: " + battery);
+      console.log("battery level: " + battery);
       callback(null, battery);
     }
     else {
-      this.log("Error getting state (status code %s): %s", response.statusCode, err);
+      console.log("Error getting state (status code %s): %s", response.statusCode, err);
       callback(err);
     }
   });
 }
 
 LGBattery.prototype.getChargingState = function(callback) {
-  this.log("getting charging state...");
+  console.log("getting charging state...");
   
   needle.get(this.url, function(err, resp) {
       if (!err && resp.statusCode == 200) {
         var status = resp.body.status;
-        this.log("battery chars: "  + status );
+        console.log("battery chars: "  + status );
         callback(null, status);
       }
       else {
-        this.log("Error getting state (status code %s): %s", response.statusCode, err);
+        console.log("Error getting state (status code %s): %s", response.statusCode, err);
         callback(err);
       }
   });
 }
 
 LGBattery.prototype.getStatusLowBattery = function(callback) {
-  this.log("getting low battery level state...");
+  console.log("getting low battery level state...");
     
   needle.get(this.url, function(err, resp) {
       if (!err && resp.statusCode == 200) {
         var low = resp.body.low;
-        this.log("battery chars: " + low);
+        console.log("battery chars: " + low);
         callback(null, low);
       }
       else {
-        this.log("Error getting state (status code %s): %s", response.statusCode, err);
+        console.log("Error getting state (status code %s): %s", response.statusCode, err);
         callback(err);
       }
   });
