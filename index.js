@@ -14,8 +14,8 @@ function LGBattery(log, config) {
     this.brand = config["brand"];
     this.url = config["url"];
 
-    this.infoservice = new Service.AccessoryInformation(this.brand);
-    this.infoservice
+    const informationService = new Service.AccessoryInformation();
+    informationService
         .setCharacteristic(Characteristic.Manufacturer, "LG")
         .setCharacteristic(Characteristic.Model, "LG Chem RESU 10HL")
         .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
