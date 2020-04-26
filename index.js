@@ -87,5 +87,5 @@ LGBattery.prototype.getStatusLowBattery = function(callback) {
 }
 
 LGBattery.prototype.getServices = function() {
-    return [this.service];
+    return [informationService, this.service];
   }
