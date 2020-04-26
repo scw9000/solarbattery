@@ -1,6 +1,6 @@
 {
   "name": "homebridge-solar-battery",
-  "version": "0.0.1-dev7",
+  "version": "0.0.1-dev8",
   "description": "homebridge plugin solar",
   "repository": {
     "type": "git",
