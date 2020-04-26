@@ -40,8 +40,7 @@ LGBattery.prototype.getBatteryLevel = function(callback) {
   
   needle.get(this.url, function(err, resp) {
     if (!err && resp.statusCode == 200) {
-      var json = JSON.parse(resp.body);
-      var battery = json.battery_level;
+      var battery = resp.body.battery_level;
       this.log("battery level: " + battery);
       callback(null, battery);
     }
@@ -57,8 +56,7 @@ LGBattery.prototype.getChargingState = function(callback) {
   
   needle.get(this.url, function(err, resp) {
       if (!err && resp.statusCode == 200) {
-        var json = JSON.parse(resp.body);
-        var status = json.status;
+        var status = resp.body.status;
         this.log("battery chars: "  + status );
         callback(null, status);
       }
@@ -74,8 +72,7 @@ LGBattery.prototype.getStatusLowBattery = function(callback) {
     
   needle.get(this.url, function(err, resp) {
       if (!err && resp.statusCode == 200) {
-        var json = JSON.parse(resp.body);
-        var low = json.low;
+        var low = resp.body.low;
         this.log("battery chars: " + low);
         callback(null, low);
       }
