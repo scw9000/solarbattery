@@ -80,7 +80,7 @@ LGBattery.prototype.getStatusLowBattery = function(callback) {
         callback(null, low);
       }
       else {
-        ithis.log("Error getting low battery state (status code %s): %s", response.statusCode, err);
+        ithis.log("Error getting low battery state (status code %s): %s", resp.statusCode, err);
         callback(err);
       }
   });
